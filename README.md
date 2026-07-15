@@ -5,3 +5,5 @@ The first thing that you will learn how to do is make a system. To do this is a 
 Next I will explain how to actually add a file to said system. First make sure you have the files that you want to download (linked here). The files I gave you are the files for the Gandalf zip. Press the + icon in the bar that says system. Then select a file and upload it. Now you have a file!
 
 Now moving onto versioning. First you need to select a file. To version a file you need to go over to the right most + button next to versions, and select it. Then select a file and upload it now you have versioned a file. As you can see there is very little that is needed to do to use Istari digital very effectively.
+
+Next we will discuss how to run a job. If you click on a Model file a button that says "+ create job" should appear in the top right of the middle display. Click on it and you will see a menu with a drop down that says select a tool/function. From there you can click on one of the many functions.
