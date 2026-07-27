@@ -4,6 +4,16 @@ In this sample I will explain how to use Istari Digital to catalog, and store da
 
 The first thing that you will learn how to do is make a system. To do this is a very simple task all you need to do is go into Istari, and on the very left hand side you should see a column with a few different icons on it for varying features. If you hover over the icon that looks similar to a family tree you will find that it says systems. Click it! Once you have done that there should be a button in the top right corner underneath the notational bar that says create. Click it! Then name your system (preferably something like Gandalf-glider because that is what we are working on), add a description and then press the create button. Done! You now have an Istari system.
 
+### Files in This Repository
+
+| File | Description |
+|------|-------------|
+| `wizard_gandalf.step` | The original Gandalf wizard CAD model (v1) |
+| `eagle_glider_v24_gandalf_rider_v1.step` | First version of the eagle glider with Gandalf rider |
+| `eagle_glider_v24_gandalf_rider_vlast.step` | Latest version of the eagle glider with Gandalf rider |
+| `eagle_glider_requirements_3.sysml` | SysML requirements file for the eagle glider |
+| `eagle_v25_headwind.zip` | Eagle glider v25 headwind simulation case files |
+
 ## Adding and Versioning Files In a System
 
 Next I will explain how to actually add a file to said system. First make sure you have the files that you want to download — all files are in the [files/](files/) folder of this repository. The files I gave you are the files for the Gandalf zip. Press the + icon in the bar that says system. Finally select a file and upload it. Now you have a file!
