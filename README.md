@@ -6,7 +6,7 @@ The first thing that you will learn how to do is make a system. To do this is a 
 
 ## Adding and Versioning Files In a System
 
-Next I will explain how to actually add a file to said system. First make sure you have the files that you want to download (linked here). The files I gave you are the files for the Gandalf zip. Press the + icon in the bar that says system. Finally select a file and upload it. Now you have a file!
+Next I will explain how to actually add a file to said system. First make sure you have the files that you want to download — all files are in the [files/](files/) folder of this repository. The files I gave you are the files for the Gandalf zip. Press the + icon in the bar that says system. Finally select a file and upload it. Now you have a file!
 
 Now moving onto versioning. First you need to select a file. To version a file you need to go over to the right most + button next to versions, and select it. Then select a file and upload it now you have versioned a file. As you can see there is very little that is needed to do to use Istari digital very effectively.
 
