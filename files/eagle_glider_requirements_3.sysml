@@ -63,9 +63,8 @@ package EagleGliderRequirements {
 
     constraint def AspectRatioMinimum {
         doc /* Minimum AR for efficient glide */
-        in span  : Real;
-        in chord : Real;
-        (span / chord) >= 12.0
+        in aspectRatio : Real;
+        aspectRatio >= 12.0
     }
 
     constraint def CentreOfMassRange {
@@ -100,10 +99,12 @@ package EagleGliderRequirements {
     }
 
     requirement def <'REQ-PHY-002'> TotalLengthRequirement {
-        doc /* The glider total length shall be 84 mm ± 2 mm */
+        doc /* The glider total length shall be 83 mm ± 3 mm. The lower bound
+               accommodates the shortened nose profile introduced when the
+               rider was integrated in v24. */
         subject glider : EagleGlider;
         attribute len : TotalLength;
-        require constraint { len.value >= 82.0 & len.value <= 86.0 }
+        require constraint { len.value >= 80.0 & len.value <= 86.0 }
     }
 
     requirement def <'REQ-PHY-003'> MaxBodyHeightRequirement {
@@ -129,8 +130,11 @@ package EagleGliderRequirements {
     }
 
     requirement def <'REQ-PHY-006'> MinWallThicknessRequirement {
-        doc /* Minimum cross-section half-dimension at any station shall be ≥ 0.5 mm
-               to ensure printability on FDM printers with 0.4 mm nozzle. */
+        doc /* Minimum cross-section half-dimension at any body loft station shall
+               be ≥ 0.5 mm to ensure printability on FDM printers with 0.4 mm
+               nozzle. The beak tip and wing tip extremities are excluded: they
+               are acknowledged delicate features governed by REQ-STR-002 and
+               REQ-STR-003 respectively. */
         subject glider : EagleGlider;
         attribute t : MinWallThickness;
         require constraint { t.value >= 0.5 }
@@ -185,8 +189,7 @@ package EagleGliderRequirements {
         subject wing : Wing;
         attribute ar : AspectRatio;
         require constraint AspectRatioMinimum {
-            in span  = 196.0;
-            in chord = ar.value;
+            in aspectRatio = ar.value;
         }
     }
 
