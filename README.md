@@ -1,25 +1,38 @@
-# How to Use Istari for Beginners
+# Gandalf on the Eagle: Will It Fly?
 
-In this sample I will explain how to use Istari Digital to catalog, and store data, version history and the like in a system. I will also explain how to use Istari with other tools and more of the ways that Istari can help you. For this tutorial there will be several resources you need to download, namely everything in this repository.
+This sample project models a small plastic figure of Gandalf riding a hand-launched foam eagle glider, and then checks — using computational fluid dynamics (CFD) — whether the combined design will actually fly. It is intended as a realistic, end-to-end example of an engineering workflow you can run through the [Istari Digital Platform](https://istaridigital.com): requirements, CAD geometry, design revisions, and simulation, all connected in one traceable digital thread.
 
-The first thing that you will learn how to do is make a system. To do this is a very simple task all you need to do is go into Istari, and on the very left hand side you should see a column with a few different icons on it for varying features. If you hover over the icon that looks similar to a family tree you will find that it says systems. Click it! Once you have done that there should be a button in the top right corner underneath the notational bar that says create. Click it! Then name your system (preferably something like Gandalf-glider because that is what we are working on), add a description and then press the create button. Done! You now have an Istari system.
+## The Story
 
-### Files in This Repository
+We want a toy eagle glider that can carry a Gandalf figure as its rider. Getting there involves the same steps as any real aerospace design effort, just at desk-toy scale:
+
+1. **Define the requirements.** The eagle glider's design rules live in a SysML v2 model ([eagle_glider_requirements_3.sysml](files/eagle_glider_requirements_3.sysml)): a 196 mm wingspan, 8–15° of wing dihedral, an aspect ratio of at least 12, a centre of mass 30–40% aft of the nose, watertight manifold geometry, and more — covering physical, aerodynamic, structural, and even aesthetic requirements ("the silhouette shall be recognizable as an eagle").
+
+2. **Model the rider.** [wizard_gandalf.step](files/wizard_gandalf.step) is the standalone Gandalf CAD model — the payload our glider has to carry.
+
+3. **Put Gandalf on the eagle.** [eagle_glider_v24_gandalf_rider_v1.step](files/eagle_glider_v24_gandalf_rider_v1.step) is the first attempt at integrating the rider onto the glider. After design iteration, [eagle_glider_v24_gandalf_rider_vlast.step](files/eagle_glider_v24_gandalf_rider_vlast.step) is the latest revision of the same model. Having both lets you exercise versioning and version comparison: same model identity, two revisions, and a diff that shows exactly what changed.
+
+4. **Check that it flies.** [eagle_v25_headwind.zip](files/eagle_v25_headwind.zip) is a complete OpenFOAM CFD case that simulates the glider in a 5 m/s headwind at roughly 15° incidence. It uses `snappyHexMesh` to mesh around the glider geometry, the `simpleFoam` steady-state solver with a k-ω SST turbulence model, and a `forceCoeffs` function that reports lift and drag coefficients on the glider every iteration. If the lift is there and the drag is reasonable, Gandalf flies.
+
+## Files in This Repository
 
 | File | Description |
 |------|-------------|
-| `wizard_gandalf.step` | The original Gandalf wizard CAD model (v1) |
+| `wizard_gandalf.step` | The Gandalf rider CAD model |
 | `eagle_glider_v24_gandalf_rider_v1.step` | First version of the eagle glider with Gandalf rider |
 | `eagle_glider_v24_gandalf_rider_vlast.step` | Latest version of the eagle glider with Gandalf rider |
-| `eagle_glider_requirements_3.sysml` | SysML requirements file for the eagle glider |
-| `eagle_v25_headwind.zip` | Eagle glider v25 headwind simulation case files |
+| `eagle_glider_requirements_3.sysml` | SysML v2 requirements model for the eagle glider |
+| `eagle_v25_headwind.zip` | OpenFOAM CFD case: glider in a 5 m/s headwind, with lift/drag coefficient reporting |
 
-## Adding and Versioning Files In a System
+All files are in the [files/](files/) folder.
 
-Next I will explain how to actually add a file to said system. First make sure you have the files that you want to download — all files are in the [files/](files/) folder of this repository. The files I gave you are the files for the Gandalf zip. Press the + icon in the bar that says system. Finally select a file and upload it. Now you have a file!
+## Using This Sample with Istari
 
-Now moving onto versioning. First you need to select a file. To version a file you need to go over to the right most + button next to versions, and select it. Then select a file and upload it now you have versioned a file. As you can see there is very little that is needed to do to use Istari digital very effectively.
+Each file maps to a step in the Istari workflow:
 
-## How to Use Jobs
+- **Register** the CAD models as files in Istari, so each one gets a unique, traceable identity.
+- **Version** the glider: upload `eagle_glider_v24_gandalf_rider_v1.step`, then add `eagle_glider_v24_gandalf_rider_vlast.step` as a new revision of the same model, and use the compare view to see how the design evolved.
+- **Extract** structured data (geometry views, parameter tables, 3D previews) from the STEP files with a job such as FreeCAD's `@istari:extract`, so anyone on the team can inspect the design without CAD software.
+- **Simulate** by running the OpenFOAM headwind case as a job, then review the resulting lift and drag coefficients against the requirements in the SysML model.
 
-Next we will discuss how to run a job. If you click on a Model file a button that says "+ create job" should appear in the top right of the middle display. Click on it and you will see a menu with a drop down that says select a tool/function. From there you can click on one of the many functions.
+For a guided, click-by-click walkthrough of registering, extracting, versioning, and comparing files in the web app, see [docs/platform-101.md](docs/platform-101.md).
